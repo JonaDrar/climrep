@@ -1,15 +1,15 @@
 import { createAutocomplete } from "@algolia/autocomplete-core";
 import Link from "next/link";
-import { useMemo, useRef, useState, useEffect } from "react";
+import { useMemo, useRef, useState } from "react";
 
 // Agregar props según devuelva la API
 const AutocompleteItem = ({ id, title, img }) => {
   return (
     <li
-      className="flex items-center p-2 space-x-2 cursor-pointer hover:bg-gray-100"
+      className="flex items-center p-2 cursor-pointer hover:bg-gray-100"
     >
       <Link href={`/Parts/${id}`} className="flex gap-4 p-4">
-          <img src={img} alt={name} className="w-20 h-20 object-contain" />
+          <img src={img} alt={title} className="w-20 h-20 object-contain" />
           <div
             className="flex flex-col justify-center"
           >
@@ -26,13 +26,6 @@ export const Search = (props) => {
     collections: [],
     isOpen: false,
   });
-
-  useEffect(() => {
-    setAutocompleteState({
-      collections: [],
-      isOpen: false,
-    });
-  }, [props.collections]);
 
   const autocomplete = useMemo(
     () =>
@@ -69,11 +62,11 @@ export const Search = (props) => {
   });
 
   return (
-    <form ref={formRef} className="flex justify-center mb-20" {...formProps}>
+    <form ref={formRef} className="flex justify-center" {...formProps}>
       <div className="w-full flex relative p-1 bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500 rounded-full">
         <input
           ref={inputRef}
-          className="flex-1 p-2 pl-4 rounded-full w-full"
+          className="flex p-2 pl-4 rounded-full w-full"
           type="text"
           {...inputProps}
         />
@@ -104,3 +97,4 @@ export const Search = (props) => {
     </form>
   );
 };
+

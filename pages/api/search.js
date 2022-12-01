@@ -21,3 +21,4 @@ export default function handler(req, res) {
   // we don't have anything to search for
     return res.status(400).json({ message: "No id or query provided" });
 }
+
