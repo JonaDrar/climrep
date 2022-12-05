@@ -63,6 +63,7 @@ export const ImageTaker = () => {
         className='w-full h-auto max-w-full'
         ></video>
         <button
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
           onClick={ takePhoto }
         >
           <img
@@ -74,6 +75,7 @@ export const ImageTaker = () => {
       <div className={ 'result ' + (hasPhoto ? 'hasPhoto' : '') }>
         <canvas ref={ photoRef }></canvas>
         <button
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
           onClick={ anotherPhoto }
         >
           <img
@@ -82,6 +84,7 @@ export const ImageTaker = () => {
           />
         </button>
         <button
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
           onClick={ () => console.log(photoRef.current.toDataURL()) }
         >
           <img
