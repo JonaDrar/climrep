@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@algolia/autocomplete-core": "1.7.3",
+    "@vercel/analytics": "^0.1.5",
     "eslint": "8.28.0",
     "eslint-config-next": "13.0.5",
     "next": "13.0.5",
