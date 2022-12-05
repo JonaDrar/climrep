@@ -8,7 +8,14 @@ export const DailyPhrase = () => {
   const api = "https://frasedeldia.azurewebsites.net/api/phrase";
 
   useEffect(() => {
-    fetch(api)
+    fetch(api, {
+      method: "GET",
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+        "Content-Type": "application/json",
+      },
+    })
       .then((response) => response.json())
       .then((data) => {
         setPhrase(data.phrase);
@@ -27,25 +34,16 @@ export const DailyPhrase = () => {
 
   return (
     <>
-      {loading ? (
-        <p>Cargando frase del día...</p>
-      ) : (
-        <div
-          className="flex flex-col items-center justify-center p-4 rounded-lg shadow-lg bg-gradient-to-tr from-pink-500/20 to-yellow-500/20 bg-opacity-10 backdrop-blur-lg rounded-full drop-shadow-lg"
-        >
-          <p
-            className="text-xl text-center"
-          >
-            {phrase}
-          </p>
-          <p
-            className="text-sm font-bold text-center"
-          >
-            {" "}
-            - {author}
-          </p>
-        </div>
-      )}
+      <div className="flex flex-col items-center justify-center p-4 rounded-lg shadow-lg bg-gradient-to-tr from-pink-500/20 to-yellow-500/20 bg-opacity-10 backdrop-blur-lg rounded-full drop-shadow-lg w-full">
+        {loading ? (
+          <p>Cargando frase del día...</p>
+        ) : (
+          <>
+            <p className="text-xl text-center">{phrase}</p>
+            <p className="text-sm font-bold text-center">- {author}</p>
+          </>
+        )}
+      </div>
     </>
   );
 };
