@@ -1,5 +1,6 @@
 import { createAutocomplete } from "@algolia/autocomplete-core";
 import Link from "next/link";
+import Image from "next/image";
 import { useMemo, useRef, useState } from "react";
 
 // Agregar props según devuelva la API
@@ -8,8 +9,16 @@ const AutocompleteItem = ({ id, title, img }) => {
     <li
       className="flex items-center p-2 cursor-pointer hover:bg-gray-100"
     >
-      <Link href={`/Parts/${id}`} className="flex gap-4 p-4">
-          <img src={img} alt={title} className="w-20 h-20 object-contain" />
+      <Link href={`/Parts/${id}`} className="flex gap-4 p-4 ">
+        <div className="w-24 h-24 relative object-cover overflow-hidden">
+          <Image
+          src={img}
+          alt={id}
+          width={100}
+          height={100}
+          quality={50}
+          />
+        </div>
           <div
             className="flex flex-col justify-center"
           >
@@ -66,7 +75,7 @@ export const Search = (props) => {
       <div className="w-full flex relative p-1 bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500 rounded-full">
         <input
           ref={inputRef}
-          className="flex p-2 pl-4 rounded-full w-full"
+          className="flex p-2 px-24 rounded-full w-full justify-center items-center text-white bg-transparent focus:outline-none"
           type="text"
           {...inputProps}
         />
