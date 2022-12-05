@@ -5,6 +5,8 @@ export default function TakeImage () {
     <div>
       <h1>Take Image</h1>
       <ImageTaker />
+
+      <input type="file" name="camera" accept="image/*" capture="environment" />
     </div>
   )
 }
