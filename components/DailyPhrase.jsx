@@ -5,17 +5,10 @@ export const DailyPhrase = () => {
   const [author, setAuthor] = useState("");
   const [loading, setLoading] = useState(true);
 
-  const api = "https://frasedeldia.azurewebsites.net/api/phrase";
+  const api = "/api/phrase"
 
   useEffect(() => {
-    fetch(api, {
-      method: "GET",
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
-        "Content-Type": "application/json",
-      },
-    })
+    fetch(api)
       .then((response) => response.json())
       .then((data) => {
         setPhrase(data.phrase);
@@ -25,25 +18,26 @@ export const DailyPhrase = () => {
       .catch((error) => {
         console.log(error);
         setPhrase(
-          "La perfección no es alcanzable, pero si perseguimos la perfección podemos conseguir la excelencia"
+          "El único modo de hacer un gran trabajo es amar lo que haces."
         );
-        setAuthor("Vince Lombardi");
+        setAuthor("Steve Jobs");
         setLoading(false);
       });
   }, []);
 
   return (
     <>
-      <div className="flex flex-col items-center justify-center p-4 rounded-lg shadow-lg bg-gradient-to-tr from-pink-500/20 to-yellow-500/20 bg-opacity-10 backdrop-blur-lg rounded-full drop-shadow-lg w-full">
+      <div className="flex flex-col items-center justify-center p-4 shadow-lg bg-gradient-to-tr from-pink-500/20 to-yellow-500/20 bg-opacity-10 backdrop-blur-lg rounded-full drop-shadow-lg w-full">
         {loading ? (
           <p>Cargando frase del día...</p>
         ) : (
           <>
             <p className="text-xl text-center">{phrase}</p>
-            <p className="text-sm font-bold text-center">- {author}</p>
+            <p className="text-sm font-bold text-center">{author}</p>
           </>
         )}
       </div>
     </>
   );
-};
+
+}
